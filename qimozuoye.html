@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>期末作业</title>
+<style type="text/css">
+		body{
+			margin: 0pt; padding: 0pt;
+			font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px;
+			color: rgb(102,102,102);
+		}
+		.wrap{
+			margin: 0pt auto;
+			background: url("images/main_bg.gif") repeat-y center top;
+			width: 762px;
+		}
+		img{
+			border: 0px none;
+			margin: 0pt; padding: 0pt;
+		}
+		.top{
+			background: url("images/main_bg.gif") repeat-y center top;
+			height: 83px; clear: both; width: 702px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+		.top1{
+			background: url("images/think.gif") no-repeat left center;
+			float: left;
+			width: 350px; height: 83px;
+		}
+		.top1 h1{
+			margin: 0px 40px; padding: 25px 0pt 0pt;
+			background-color: rgb(255,255,255);
+			font-size: 26px;
+			font-weight: normal;
+		}
+		.top1 h1 a{
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo{
+			background: url("images/idea.gif") no-repeat center top;
+			height: 225px; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px;
+		}
+		.shortinfo .menuitems{
+			padding: 12px 34px 30px 30px;
+			text-align: right;
+		}
+		.shortinfo ul{
+			margin: 0px;
+			list-style-type: none;
+			list-style-image: none;
+			list-style-position: outside;
+		}
+		.shortinfo li{
+			padding: 0pt 9px;
+			display: inline;
+		}
+		.shortinfo li a:link, .shortinfo li a:visited{
+			margin: 0px;
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo li a:hover{
+			margin: 0px; color: rgb(176,0,0);
+			text-decoration: underline;
+		}
+		.content{
+			clear: both;
+			width: 762px;
+		}
+		.content .leftColumn{
+			margin: 0pt;
+			padding: 10px 8px 10px 25px;
+			float: left;
+			width: 225px;
+		}
+		.leftColumn h2, .leftColumn h2 a{
+			font-size: 20px;
+		}
+		.leftColumn ul{
+			margin: 0pt; padding: 0pt 0pt 5px;
+			font-size: 12px; font-family: "宋体";
+			list-style-type: none;
+		}
+		.leftColumn li{
+			margin: 7px 0px;
+			padding-left: 30px;
+		}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  color: #08519C;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+		.leftColumn a:link, .leftColumn a:visited{
+			color: rgb(102,102,102);
+			font-weight: normal;
+			text-decoration: none;
+		}
+		.leftColumn a:hover{
+			color: rgb(176,0,0);
+			font-weight: bold;
+			text-decoration: none;
+		}
+		.content .rightColumn{
+			padding: 15px 0px 10px 8px;
+			float: left;
+			width: 470px;
+		}
+		.rightColumn h2, .rightColumn h2 a{
+			margin: 0pt; padding: 0pt; font-size: 18px;
+			color: rgb(85,85,85);
+			letter-spacing: 0px;
+			font-weight: normal;
+			text-decoration: none;
+		}
+		.rightColumn h2 a:hover{
+			margin: 0pt; padding: 0pt; font-size: 18px;
+			color: rgb(180,0,0);
+			letter-spacing: 0px;
+			font-weight: normal;
+			text-decoration: none;
+		}
+		.post{
+			margin: 0pt 0pt 20pt;
+		}
+		.entry{
+			padding: 5px;
+		}
+		.center p{
+			margin: 5px 0px;
+			font-size: 12px;
+			line-height: 1.5;
+			text-indent: 2em;
+		}
+		.post img{
+			margin-right: 10px;
+		}
+		.footer{
+			width: 702px;
+			height: 40px;
+			margin-left: 12px;
+			padding-top: 10px;
+			padding-left: 34px;
+			border-top: 1px solid #999;
+			clear: both;
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #08519C;
+		}
+		.footer p{
+			text-align: center;
+			margin: 0pt;
+			padding: 0pt;
+		}
+        #slider {
+            width: 200px;
+            height: 152px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        #slider img.active {
+            opacity: 1;
+        }
+        #slider img:not(.active) {
+            opacity: 0;
+        }
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="top">
+			<div class="top1">
+				<h1><a href="#">创意融合平台</a></h1>
+			</div>
+		</div>
+		<div class="shortinfo">
+			<div class="menuitems">
+				<ul>
+					<li><a href="./qimozuoye.html"><strong>首页</strong></a></li>
+					<li><div class="dropdown">
+                       <a class="dropbtn"><strong>创意空间</strong></a>
+                             <div class="dropdown-content">
+                             <a href="./huihuatiandi.html">绘画天地</a>
+                             <a href="./yinyueshijie.html">音乐世界</a>
+                             <a href="./kejileyuan.html">科技乐园</a>
+                           </div>
+                         </div>
+					</li>
+					<li><a href="./chanpinshangcheng.html"><strong>产品商城</strong></a></li>
+					<li><div class="dropdown">
+                       <a class="dropbtn"><strong>休闲游戏</strong></a>
+                             <div class="dropdown-content">
+                             <a href="./pacman.html">吃豆人</a>
+                             <a href="./2048.html">2048（含手柄）</a>
+                           </div>
+                         </div>
+					</li>
+					<li><a href="./zhucedenglu.html"><strong>注册登录</strong></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="content">
+			<div class="leftColumn">
+				<h2>动态速递</h2>
+				<ul>
+					<li><a href="./dongtai1.html">创意启示录：点亮思维，拓展可能</a></li>
+					<li><a href="./dongtai2.html">创意的火花</a></li><br>
+					<li><a href="./gengduodongtai.html">更多动态</a></li>
+				</ul>
+				<h2>项目合作</h2>
+				<ul>
+					<li><a href="./jiaruwomen.html">加入我们</a></li>
+				</ul>
+			</div>
+			<div class="rightColumn">
+				<div class="center">
+					<div class="post">
+						<h2>欢迎来到创意融合平台</h2>
+						<div class="entry">
+							<div id="slider">
+                                 <img src="./images/tupian1.jpg" class="active" alt="Image 1">
+                                 <img src="./images/tupian2.jpg" alt="Image 2">
+                                 <img src="./images/tupian3.jpg" alt="Image 3"><!-- 添加更多图片 -->
+                            </div>
+							<script>
+                                let current = 0;
+                                const images = document.querySelectorAll('#slider img');
+                                const totalImages = images.length;
+
+                                function switchImage() {
+                                   images[current].classList.remove('active');
+                                   current = (current + 1) % totalImages;
+                                   images[current].classList.add('active');
+                                }
+
+                                // 设置图片切换间隔时间（例如：3秒）
+                                setInterval(switchImage, 3000);
+                            </script>
+							<p>欢迎来到创意融合平台，这里是创意与技术的交汇点，是梦想与现实的融合之地。我们致力于打造一个集创意展示、技术交流、项目合作于一体的综合性平台，为创意者、技术专家和投资者搭建一座沟通的桥梁。</p>
+						    <p>在这里，您将发现无数独具匠心的创意作品，它们汇聚了来自各个领域的智慧和灵感。无论您是艺术家、设计师、工程师，还是对创意充满热情的探索者，都能在这里找到属于自己的舞台。</p>
+						    <p>我们的平台不仅提供丰富的创意资源，还拥有强大的技术支持团队，帮助您将创意转化为现实。通过先进的科技手段，我们让创意更加生动、更具影响力。</p>
+							<p>加入我们，与全球的创意精英共同探索无限可能。在这里，每一个想法都被尊重，每一个创意都将闪耀。创意融合平台，让创意改变世界，让技术实现梦想！</p>
+							<p>立即注册，开启您的创意之旅吧！</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<p>Copyright &copy; 木习习</p>
+		</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>科技乐园</title>
+<style>
+/* 简单的样式设置 */
+		body{
+			margin: 0pt; padding: 0pt;
+			font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px;
+			color: rgb(102,102,102);
+		}
+		.wrap{
+			margin: 0pt auto;
+			background: url("images/main_bg.gif") repeat-y center top;
+			width: 762px;
+		}
+	  img{
+			border: 0px none;
+			margin: 0pt; padding: 0pt;
+		}
+		.top{
+			background: url("images/main_bg.gif") repeat-y center top;
+			height: 83px; clear: both; width: 702px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+		.top1{
+			background: url("images/think.gif") no-repeat left center;
+			float: left;
+			width: 350px; height: 83px;
+		}
+		.top1 h1{
+			margin: 0px 40px; padding: 25px 0pt 0pt;
+			background-color: rgb(255,255,255);
+			font-size: 26px;
+			font-weight: normal;
+		}
+		.top1 h1 a{
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo{
+			height: 225px; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px;
+		}
+		.shortinfo .menuitems{
+			padding: 12px 34px 30px 30px;
+			text-align: right;
+		}
+		.shortinfo ul{
+			margin: 0px;
+			list-style-type: none;
+			list-style-image: none;
+			list-style-position: outside;
+		}
+		.shortinfo li{
+			padding: 0pt 9px;
+			display: inline;
+		}
+		.shortinfo li a:link, .shortinfo li a:visited{
+			margin: 0px;
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo li a:hover{
+			margin: 0px; color: rgb(176,0,0);
+			text-decoration: underline;
+		}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group input[type="submit"] {
+  background-color: #4B4FF9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-group input[type="submit"]:hover {
+  background-color: #4B40F5;
+}
+		.footer{
+			width: 702px;
+			height: 40px;
+			margin-left: 12px;
+			padding-top: 10px;
+			padding-left: 34px;
+			border-top: 1px solid #999;
+			clear: both;
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #08519C;
+		}
+		.footer p{
+			text-align: center;
+			margin: 0pt;
+			padding: 0pt;
+	    }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+	<div class="top1">
+		<h1><a href="#">创意融合平台:科技乐园</a></h1>
+	</div>
+	<div class="shortinfo">
+	<div class="menuitems">
+			<ul>
+				<li><a href="./qimozuoye.html"><strong>返回首页</strong></a></li>
+			</ul>
+	</div>
+	</div>
+	</div>
+<div class="form-container">
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="image">选择视频文件（MP4、AVI、MKV）：</label>
+      <input type="file" id="video" name="video" accept="video/mp4,video/x-msvideo,video/x-matroska">
+    </div>
+    <div class="form-group">
+      <label for="description">文字介绍：</label>
+      <input type="text" id="description" name="description" placeholder="输入科技发明介绍">
+    </div>
+    <div class="form-group">
+      <input type="submit" value="上传">
+    </div>
+  </form>
+</div>
+	<br><br><br>
+	<div class="footer">
+			<p>Copyright &copy; 木习习</p>
+	</div>
+</div>
+</body>
+</html>
+

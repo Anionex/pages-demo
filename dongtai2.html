@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>动态2</title>
+	<style>
+/* 简单的样式设置 */
+		body{
+			margin: 0pt; padding: 0pt;
+			font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px;
+			color: rgb(102,102,102);
+		}
+		.wrap{
+			margin: 0pt auto;
+			background: url("images/main_bg.gif") repeat-y center top;
+			width: 762px;
+		}
+	  img{
+			border: 0px none;
+			margin: 0pt; padding: 0pt;
+		}
+		.top{
+			background: url("images/main_bg.gif") repeat-y center top;
+			height: 83px; clear: both; width: 702px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+		.top1{
+			background: url("images/think.gif") no-repeat left center;
+			float: left;
+			width: 350px; height: 83px;
+		}
+		.top1 h1{
+			margin: 0px 40px; padding: 25px 0pt 0pt;
+			background-color: rgb(255,255,255);
+			font-size: 26px;
+			font-weight: normal;
+		}
+		.top1 h1 a{
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo{
+			height: 225px; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px;
+		}
+		.shortinfo .menuitems{
+			padding: 12px 34px 30px 30px;
+			text-align: right;
+		}
+		.shortinfo ul{
+			margin: 0px;
+			list-style-type: none;
+			list-style-image: none;
+			list-style-position: outside;
+		}
+		.shortinfo li{
+			padding: 0pt 9px;
+			display: inline;
+		}
+		.shortinfo li a:link, .shortinfo li a:visited{
+			margin: 0px;
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo li a:hover{
+			margin: 0px; color: rgb(176,0,0);
+			text-decoration: underline;
+		}
+				.footer{
+			width: 702px;
+			height: 40px;
+			margin-left: 12px;
+			padding-top: 10px;
+			padding-left: 34px;
+			border-top: 1px solid #999;
+			clear: both;
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #08519C;
+		}
+		.footer p{
+			text-align: center;
+			margin: 0pt;
+			padding: 0pt;
+	    }
+		        #slider {
+            width: 200px;
+            height: 152px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+		.content{
+			clear: both;
+			width: 702px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+        #slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        #slider img.active {
+            opacity: 1;
+        }
+        #slider img:not(.active) {
+            opacity: 0;
+        }
+</style>
+</head>
+
+<body>
+	<div class="wrap">
+<div class="top">
+	<div class="top1">
+		<h1><a href="#">创意融合平台</a></h1>
+	</div>
+	<div class="shortinfo">
+	<div class="menuitems">
+			<ul>
+				<li><a href="./qimozuoye.html"><strong>返回首页</strong></a></li>
+			</ul>
+	</div>
+	</div>
+	</div>
+	<div class="content">
+							<div id="slider">
+                                 <img src="./images/dongtai2.jpg" class="active" alt="Image 1"><!-- 添加更多图片 -->
+                            </div>
+							<script>
+                                let current = 0;
+                                const images = document.querySelectorAll('#slider img');
+                                const totalImages = images.length;
+
+                                function switchImage() {
+                                   images[current].classList.remove('active');
+                                   current = (current + 1) % totalImages;
+                                   images[current].classList.add('active');
+                                }
+
+                                // 设置图片切换间隔时间（例如：3秒）
+                                setInterval(switchImage, 3000);
+                            </script>
+		                    <h2 align="center">创意的火花</h2>
+							<p align="left">作者：佚名</p>
+						    <p align="left">2025.01.01</p>
+						    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在一个平凡的小镇上，住着一个名叫小李的年轻人。他拥有一份稳定的工作，过着按部就班的生活。然而，小李的内心却充满了对创意的渴望。</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有一天，小李在街头漫步时，无意间发现了一家即将倒闭的文具店。店里的商品陈旧，生意冷清。小李突然萌生了一个想法：为什么不能将这家文具店改造成一个充满创意的空间呢？</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说干就干，小李辞去了稳定的工作，接手了这家文具店。他开始四处寻找创意灵感，从书籍、电影到旅行中的见闻，他都用心去感受、去记录。</p>
+		                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过一番精心改造，文具店焕然一新。小李在店里设置了创意工作区，供人们举办工作坊、分享会；他还引进了各种独特的文具和手工艺品，吸引了不少年轻人前来探索。</p>
+		                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;渐渐地，这家文具店成了小镇上的一个创意聚集地。人们在这里交流想法，激发灵感，共同创造出了许多有趣的作品。</p>
+		                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小李也从一个普通的年轻人成长为了创意的引领者。他用自己的行动证明了，创意不仅能够改变自己的生活，还能为周围的人带来快乐和启发。</p>
+		                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个故事在小镇上流传开来，激励着更多的人去追寻自己的创意梦想。而小李的文具店，也成为了小镇上的一道独特风景线，见证着创意的火花在这里绽放。</p>
+		                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#趣味故事集# #创意生活#</p>
+	</div>
+			<br><br><br>
+	<div class="footer">
+			<p>Copyright &copy; 木习习</p>
+	</div>
+</div>
+</body>
+</html>
+

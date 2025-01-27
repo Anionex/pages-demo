@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>完善版吃豆人</title>
+    <style>
+		body{
+			margin: 0pt; padding: 0pt;
+			font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px;
+			color: rgb(102,102,102);
+		}
+		.wrap{
+			margin: 0pt auto;
+			background: url("images/main_bg.gif") repeat-y center top;
+			width: 762px;
+		}
+	  img{
+			border: 0px none;
+			margin: 0pt; padding: 0pt;
+		}
+		.top{
+			background: url("images/main_bg.gif") repeat-y center top;
+			height: 83px; clear: both; width: 702px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+		.top1{
+			background: url("images/think.gif") no-repeat left center;
+			float: left;
+			width: 350px; height: 83px;
+		}
+		.top1 h1{
+			margin: 0px 40px; padding: 25px 0pt 0pt;
+			background-color: rgb(255,255,255);
+			font-size: 26px;
+			font-weight: normal;
+		}
+		.top1 h1 a{
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo{
+			height: 225px; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px;
+		}
+		.shortinfo .menuitems{
+			padding: 12px 34px 30px 30px;
+			text-align: right;
+		}
+		.shortinfo ul{
+			margin: 0px;
+			list-style-type: none;
+			list-style-image: none;
+			list-style-position: outside;
+		}
+		.shortinfo li{
+			padding: 0pt 9px;
+			display: inline;
+		}
+		.shortinfo li a:link, .shortinfo li a:visited{
+			margin: 0px;
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo li a:hover{
+			margin: 0px; color: rgb(176,0,0);
+			text-decoration: underline;
+		}
+		.game{
+			background-color: #000000;
+			width: 700px;
+			margin: 100px auto;
+		}
+        canvas {
+            border: 2px solid #000;
+            display: block;
+            margin: 20px auto;
+			padding: 20px;
+        }
+			.footer{
+			width: 702px;
+			height: 40px;
+			margin-left: 12px;
+			padding-top: 10px;
+			padding-left: 34px;
+			border-top: 1px solid #999;
+			clear: both;
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #08519C;
+		}
+		.footer p{
+			text-align: center;
+			margin: 0pt;
+			padding: 0pt;
+	    }
+    </style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="top">
+	<div class="top1">
+		<h1><a href="#">创意融合平台</a></h1>
+	</div>
+	<div class="shortinfo">
+	<div class="menuitems">
+			<ul>
+				<li><a href="./qimozuoye.html"><strong>返回首页</strong></a></li>
+			</ul>
+	</div>
+	</div>
+	</div>
+	<div class="game">
+    <canvas id="gameCanvas" width="560" height="620"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const CELL_SIZE = 20;
+        const GRID_WIDTH = 28;
+        const GRID_HEIGHT = 31;
+        let pacmanMoveCounter = 0;
+        const pacmanMoveInterval = 8;
+        // 0=通道, 1=墙, 2=普通豆子, 3=能量豆
+        let map = [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1],
+            [1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1],
+            [1,3,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,3,1],
+            [1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1],
+            [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+            [1,2,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,2,1],
+            [1,2,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,2,1],
+            [1,2,2,2,2,2,2,1,1,2,2,2,2,1,1,2,2,2,2,1,1,2,2,2,2,2,2,1],
+            [1,1,1,1,1,1,2,1,1,1,1,1,0,1,1,0,1,1,1,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,1,1,1,0,1,1,0,1,1,1,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,0,0,0,0,0,0,0,0,0,0,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,0,1,1,1,0,0,1,1,1,0,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,0,1,0,0,0,0,0,0,1,0,1,1,2,1,1,1,1,1,1],
+            [0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,0,1,0,0,0,2,0,0,0,0,0,0],
+            [1,1,1,1,1,1,2,1,1,0,1,0,0,0,0,0,0,1,0,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,0,0,0,0,0,0,0,0,0,0,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1],
+            [1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1],
+            [1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1],
+            [1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1],
+            [1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1],
+            [1,3,2,2,1,1,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,1,1,2,2,3,1],
+            [1,1,1,2,1,1,2,1,1,2,1,1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,1],
+            [1,1,1,2,1,1,2,1,1,2,1,1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,1],
+            [1,2,2,2,2,2,2,1,1,2,2,2,2,1,1,2,2,2,2,1,1,2,2,2,2,2,2,1],
+            [1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1],
+            [1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1],
+            [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        let pacman = {
+            x: 13,
+            y: 23,
+            direction: 0, // 0=右, 1=下, 2=左, 3=上
+            nextDirection: 0,
+            score: 0,
+            lives: 3,
+            powerMode: false,
+            powerModeTime: 0
+        };
+
+        let ghosts = [
+            {x: 13, y: 11, direction: 0, color: 'red', mode: 'scatter'},
+            {x: 14, y: 11, direction: 0, color: 'pink', mode: 'scatter'},
+            {x: 13, y: 13, direction: 0, color: 'cyan', mode: 'scatter'},
+            {x: 14, y: 13, direction: 0, color: 'orange', mode: 'scatter'}
+        ];
+
+        let ghostMoveCounter = 0;
+        const ghostMoveInterval = 10;
+
+        function drawMap() {
+            for(let y = 0; y < GRID_HEIGHT; y++) {
+                for(let x = 0; x < GRID_WIDTH; x++) {
+                    if(map[y][x] === 1) {
+                        ctx.fillStyle = 'blue';
+                        ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                    } else if(map[y][x] === 2) {
+                        ctx.fillStyle = 'yellow';
+                        ctx.beginPath();
+                        ctx.arc(x * CELL_SIZE + CELL_SIZE/2, y * CELL_SIZE + CELL_SIZE/2, 2, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else if(map[y][x] === 3) {
+                        ctx.fillStyle = 'yellow';
+                        ctx.beginPath();
+                        ctx.arc(x * CELL_SIZE + CELL_SIZE/2, y * CELL_SIZE + CELL_SIZE/2, 4, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+            }
+        }
+
+        function drawPacman() {
+            ctx.fillStyle = 'yellow';
+            ctx.beginPath();
+            let mouth = 0.2 * Math.PI * Math.sin(Date.now() / 100); // 嘴巴动画
+            ctx.arc(pacman.x * CELL_SIZE + CELL_SIZE/2, 
+                   pacman.y * CELL_SIZE + CELL_SIZE/2,
+                   CELL_SIZE/2 - 2,
+                   mouth + pacman.direction * Math.PI/2,
+                   Math.PI * 2 - mouth + pacman.direction * Math.PI/2);
+            ctx.lineTo(pacman.x * CELL_SIZE + CELL_SIZE/2,
+                      pacman.y * CELL_SIZE + CELL_SIZE/2);
+            ctx.fill();
+        }
+
+        function drawGhosts() {
+            ghosts.forEach(ghost => {
+                ctx.fillStyle = ghost.color;
+                if(pacman.powerMode) {
+                    ctx.fillStyle = 'blue';
+                }
+                ctx.beginPath();
+                ctx.arc(ghost.x * CELL_SIZE + CELL_SIZE/2,
+                       ghost.y * CELL_SIZE + CELL_SIZE/2,
+                       CELL_SIZE/2 - 2, 0, Math.PI, true);
+                ctx.lineTo(ghost.x * CELL_SIZE, ghost.y * CELL_SIZE + CELL_SIZE);
+                ctx.lineTo(ghost.x * CELL_SIZE + CELL_SIZE, ghost.y * CELL_SIZE + CELL_SIZE);
+                ctx.fill();
+            });
+        }
+
+        function moveGhosts() {
+            ghostMoveCounter++;
+            if (ghostMoveCounter < ghostMoveInterval) return;
+            ghostMoveCounter = 0;
+
+            ghosts.forEach(ghost => {
+                let possibleDirections = [];
+                if(map[ghost.y][ghost.x-1] !== 1) possibleDirections.push(2);
+                if(map[ghost.y][ghost.x+1] !== 1) possibleDirections.push(0);
+                if(map[ghost.y-1][ghost.x] !== 1) possibleDirections.push(3);
+                if(map[ghost.y+1][ghost.x] !== 1) possibleDirections.push(1);
+
+                if(possibleDirections.length > 0) {
+                    if(ghost.mode === 'scatter' || pacman.powerMode) {
+                                            ghost.direction = possibleDirections[Math.floor(Math.random() * possibleDirections.length)];
+                } else { // 常规追逐模式
+                    let dx = pacman.x - ghost.x;
+                    let dy = pacman.y - ghost.y;
+
+                    if(ghost.color === 'red') {
+                        // 直接追逐模式
+                    } else if(ghost.color === 'pink') {
+                        dx += pacman.direction === 0 ? 4 : pacman.direction === 2 ? -4 : 0;
+                        dy += pacman.direction === 1 ? 4 : pacman.direction === 3 ? -4 : 0;
+                    } else if(ghost.color === 'cyan') {
+                        // 移动到玩家两倍距离的策略点
+                        dx = (pacman.x - ghost.x) * 2;
+                        dy = (pacman.y - ghost.y) * 2;
+                    } else if(ghost.color === 'orange') {
+                        // 随机移动
+                        ghost.direction = possibleDirections[Math.floor(Math.random() * possibleDirections.length)];
+                    }
+
+                    if (Math.abs(dx) > Math.abs(dy)) {
+                        ghost.direction = dx > 0 ? 0 : 2;
+                    } else {
+                        ghost.direction = dy > 0 ? 1 : 3;
+                    }
+                }
+
+                if (ghost.direction === 0) ghost.x++;
+                if (ghost.direction === 1) ghost.y++;
+                if (ghost.direction === 2) ghost.x--;
+                if (ghost.direction === 3) ghost.y--;
+
+                // 增加穿过通道
+                if (ghost.x < 0) ghost.x = GRID_WIDTH - 1;
+                if (ghost.x >= GRID_WIDTH) ghost.x = 0;
+        }});
+            
+        }
+
+        function movePacman() {
+            pacmanMoveCounter++;
+            if (pacmanMoveCounter < pacmanMoveInterval) return;
+            pacmanMoveCounter = 0;
+            let nextX = pacman.x;
+            let nextY = pacman.y;
+
+            if (pacman.nextDirection === 0) nextX++;
+            if (pacman.nextDirection === 2) nextX--;
+            if (pacman.nextDirection === 1) nextY++;
+            if (pacman.nextDirection === 3) nextY--;
+
+            // 环形通道
+            if(nextX < 0) nextX = GRID_WIDTH - 1;
+            if(nextX >= GRID_WIDTH) nextX = 0;
+
+            if (map[nextY][nextX] !== 1) {
+                pacman.direction = pacman.nextDirection;
+                if (map[nextY][nextX] === 2) {
+                    pacman.score += 10;
+                    map[nextY][nextX] = 0;
+                } else if (map[nextY][nextX] === 3) {
+                    pacman.score += 50;
+                    pacman.powerMode = true;
+                    pacman.powerModeTime = 500;
+                    map[nextY][nextX] = 0;
+                }
+
+                pacman.x = nextX;
+                pacman.y = nextY;
+            }
+
+            if (pacman.powerMode) {
+                pacman.powerModeTime--;
+                if (pacman.powerModeTime <= 0) {
+                    pacman.powerMode = false;
+                    ghosts.forEach(g => g.mode = 'chase');
+                }
+            }
+        }
+
+        function checkCollisions() {
+            ghosts.forEach(ghost => {
+                if (ghost.x === pacman.x && ghost.y === pacman.y) {
+                    if (pacman.powerMode) {
+                        pacman.score += 200;
+                        ghost.x = 13;
+                        ghost.y = 14;
+                        ghost.mode = 'scatter';
+                    } else {
+                        pacman.lives--;
+                        if (pacman.lives <= 0) {
+                            alert(`Game Over! Score: ${pacman.score}`);
+                            resetGame();
+                        } else {
+                            pacman.x = 13;
+                            pacman.y = 23;
+                        }
+                    }
+                }
+            });
+        }
+
+        function resetGame() {
+            pacman.lives = 3;
+            pacman.score = 0;
+            pacman.x = 13;
+            pacman.y = 23;
+            pacman.direction = 0;
+            pacman.powerMode = false;
+
+            ghosts.forEach((ghost, i) => {
+                ghost.x = i % 2 === 0 ? 13 : 14;
+                ghost.y = i < 2 ? 11 : 13;
+                ghost.mode = 'scatter';
+            });
+
+            // 恢复豆子
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    if (map[y][x] === 0) map[y][x] = (y === 3 || y === 23) && (x === 1 || x === 26) ? 3 : 2;
+                }
+            }
+        }
+
+        function drawScoreAndLives() {
+            ctx.fillStyle = 'white';
+            ctx.font = '20px Arial';
+            ctx.fillText(`Score: ${pacman.score}`, 20, 590);
+            ctx.fillText(`Lives: ${pacman.lives}`, 460, 590);
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawMap();
+            drawPacman();
+            drawGhosts();
+            drawScoreAndLives();
+            movePacman();
+            moveGhosts();
+            checkCollisions();
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') pacman.nextDirection = 0;
+            if (e.key === 'ArrowDown') pacman.nextDirection = 1;
+            if (e.key === 'ArrowLeft') pacman.nextDirection = 2;
+            if (e.key === 'ArrowUp') pacman.nextDirection = 3;
+        });
+
+        resetGame();
+        gameLoop();
+    </script>
+	</div>
+	<br><br><br>
+	<div class="footer">
+			<p>Copyright &copy; 木习习</p>
+	</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>加入我们</title>
+    <style>
+		body{
+			margin: 0pt; padding: 0pt;
+			font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px;
+			color: rgb(102,102,102);
+		}
+		.wrap{
+			margin: 0pt auto;
+			background: url("images/main_bg.gif") repeat-y center top;
+			width: 762px;
+		}
+	  img{
+			border: 0px none;
+			margin: 0pt; padding: 0pt;
+		}
+		.top{
+			background: url("images/main_bg.gif") repeat-y center top;
+			height: 83px; clear: both; width: 702px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+		.top1{
+			background: url("images/think.gif") no-repeat left center;
+			float: left;
+			width: 350px; height: 83px;
+		}
+		.top1 h1{
+			margin: 0px 40px; padding: 25px 0pt 0pt;
+			background-color: rgb(255,255,255);
+			font-size: 26px;
+			font-weight: normal;
+		}
+		.top1 h1 a{
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo{
+			height: 225px; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px;
+		}
+		.shortinfo .menuitems{
+			padding: 12px 34px 30px 30px;
+			text-align: right;
+		}
+		.shortinfo ul{
+			margin: 0px;
+			list-style-type: none;
+			list-style-image: none;
+			list-style-position: outside;
+		}
+		.shortinfo li{
+			padding: 0pt 9px;
+			display: inline;
+		}
+		.shortinfo li a:link, .shortinfo li a:visited{
+			margin: 0px;
+			color: #08519C;
+			text-decoration: none;
+		}
+		.shortinfo li a:hover{
+			margin: 0px; color: rgb(176,0,0);
+			text-decoration: underline;
+		}
+				.footer{
+			width: 702px;
+			height: 40px;
+			margin-left: 12px;
+			padding-top: 10px;
+			padding-left: 34px;
+			border-top: 1px solid #999;
+			clear: both;
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #08519C;
+		}
+		.footer p{
+			text-align: center;
+			margin: 0pt;
+			padding: 0pt;
+	    }
+		.content{
+			clear: both;
+			width: 702px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+        .input-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+			<div class="wrap">
+    <div class="top">
+	<div class="top1">
+		<h1><a href="#">创意融合平台</a></h1>
+	</div>
+	<div class="shortinfo">
+	<div class="menuitems">
+			<ul>
+				<li><a href="./qimozuoye.html"><strong>返回首页</strong></a></li>
+			</ul>
+	</div>
+	</div>
+	</div>
+	<div class="content">
+    <h2>加入我们</h2>
+    <form>
+        <div class="input-group">
+            <input type="radio" id="phone" name="contact_type" value="phone" checked>
+            <label for="phone">手机号</label>
+            <input type="text" id="phone_input" placeholder="请输入手机号">
+        </div>
+        <div class="input-group">
+            <input type="radio" id="wechat" name="contact_type" value="wechat">
+            <label for="wechat">微信号</label>
+            <input type="text" id="wechat_input" placeholder="请输入微信号" disabled>
+        </div>
+        <div class="input-group">
+            <input type="radio" id="email" name="contact_type" value="email">
+            <label for="email">邮箱</label>
+            <input type="email" id="email_input" placeholder="请输入邮箱" disabled>
+        </div>
+        <button type="submit" class="submit-btn">提交</button>
+    </form>
+
+    <script>
+        // 获取单选按钮和输入框
+        const phoneRadio = document.getElementById('phone');
+        const wechatRadio = document.getElementById('wechat');
+        const qqEmailRadio = document.getElementById('email');
+        const phoneInput = document.getElementById('phone_input');
+        const wechatInput = document.getElementById('wechat_input');
+        const qqEmailInput = document.getElementById('email_input');
+
+        // 根据选中的单选按钮启用相应的输入框
+        function updateInputFields() {
+            phoneInput.disabled = !phoneRadio.checked;
+            wechatInput.disabled = !wechatRadio.checked;
+            qqEmailInput.disabled = !qqEmailRadio.checked;
+        }
+
+        // 为单选按钮添加事件监听器
+        phoneRadio.addEventListener('change', updateInputFields);
+        wechatRadio.addEventListener('change', updateInputFields);
+        qqEmailRadio.addEventListener('change', updateInputFields);
+
+        // 初始化输入框状态
+        updateInputFields();
+    </script>
+	</div>
+							<br><br><br>
+	<div class="footer">
+			<p>Copyright &copy; 木习习</p>
+	</div>
+</div>
+</body>
+</html>
